@@ -55,12 +55,13 @@ const iconStyle = {
   "&:hover .MuiSvgIcon-root": { color: "red" },
 };
 const MenuListItems = () => {
+  const navigate = useNavigate();
   return (
     <div>
       <List>
         {icons?.map((item, index) => (
           <ListItem key={index} disablePadding>
-            <ListItemButton>
+            <ListItemButton onClick={() => navigate(item.url)}>
               <ListItemIcon>{item.icon}</ListItemIcon>
               <ListItemText primary={item.title} />
             </ListItemButton>
