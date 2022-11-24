@@ -1,3 +1,4 @@
+import { Box, Button, Typography } from "@mui/material";
 import { useEffect } from "react";
 import useStockCalls from "../hooks/useStockCalls";
 // import axios from "axios";
@@ -28,7 +29,15 @@ const Firms = () => {
     getSales();
   }, []);
 
-  return <div>Firms</div>;
+  return (
+    <Box>
+      <Typography variant="h4" color="error" mb={4}>
+        Firms
+      </Typography>
+
+      <Button variant="contained">New Firm</Button>
+    </Box>
+  );
 };
 
 export default Firms;
