@@ -46,6 +46,7 @@ export default function FirmCard({ firm, setOpen, setInfo }) {
             setInfo(firm);
           }}
         />
+
         <DeleteOutlineIcon
           sx={btnHoverStyle}
           onClick={() => deleteFirm(firm?.id)}
