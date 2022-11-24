@@ -4,7 +4,7 @@ import useStockCalls from "../hooks/useStockCalls";
 // import { fetchFail, fetchStart, getSuccess } from "../features/StockSlice";
 
 const Firms = () => {
-  const { getFirms } = useStockCalls();
+  const { getFirms, getSales } = useStockCalls();
   // const { token } = useSelector((state) => state.auth);
   // const BASE_URL = "https://13602.fullstack.clarusway.com/";
   // const getFirms = async () => {
@@ -25,6 +25,7 @@ const Firms = () => {
 
   useEffect(() => {
     getFirms();
+    getSales();
   }, []);
 
   return <div>Firms</div>;
