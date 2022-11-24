@@ -42,13 +42,7 @@ const Firms = () => {
         Firms
       </Typography>
 
-      <Button
-        variant="contained"
-        onClick={() => {
-          setOpen(true);
-          setInfo({});
-        }}
-      >
+      <Button variant="contained" onClick={() => setOpen(true)}>
         New Firm
       </Button>
 
