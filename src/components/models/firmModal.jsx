@@ -44,6 +44,7 @@ export default function FirmModal({ open, setOpen, info, setInfo }) {
               variant="outlined"
               value={info?.name || ""}
               onChange={handleChange}
+              required
             />
             <TextField
               label="Phone*"
@@ -53,6 +54,7 @@ export default function FirmModal({ open, setOpen, info, setInfo }) {
               variant="outlined"
               value={info?.phone || ""}
               onChange={handleChange}
+              required
             />
             <TextField
               label="Address*"
@@ -62,6 +64,7 @@ export default function FirmModal({ open, setOpen, info, setInfo }) {
               variant="outlined"
               value={info?.address || ""}
               onChange={handleChange}
+              required
             />
             <TextField
               label="Image Url*"
@@ -71,6 +74,7 @@ export default function FirmModal({ open, setOpen, info, setInfo }) {
               variant="outlined"
               value={info?.image || ""}
               onChange={handleChange}
+              required
             />
 
             <Button type="submit" variant="contained">
