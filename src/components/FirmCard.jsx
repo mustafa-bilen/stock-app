@@ -7,9 +7,10 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import EditIcon from "@mui/icons-material/Edit";
+import { btnHoverStyle } from "../styles/globalStyle";
 export default function FirmCard({ firm }) {
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 345, textAlign: "center" }}>
       <CardMedia
         component="img"
         alt="firm-image"
@@ -25,8 +26,8 @@ export default function FirmCard({ firm }) {
         </Typography>
       </CardContent>
       <CardActions sx={{ display: "flex", justifyContent: "center" }}>
-        <EditIcon />
-        <DeleteOutlineIcon />
+        <EditIcon sx={btnHoverStyle} />
+        <DeleteOutlineIcon sx={btnHoverStyle} />
       </CardActions>
     </Card>
   );
