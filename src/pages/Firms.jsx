@@ -3,12 +3,16 @@ import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import FirmCard from "../components/FirmCard";
 import useStockCalls from "../hooks/useStockCalls";
+import { useState } from "react";
+import FirmModal from "../components/models/firmModal";
 // import axios from "axios";
 // import { fetchFail, fetchStart, getSuccess } from "../features/StockSlice";
 
 const Firms = () => {
   const { getFirms } = useStockCalls();
   const { firms } = useSelector((state) => state.stock);
+  const [open, setOpen] = useState(false);
+
   // const { token } = useSelector((state) => state.auth);
   // const BASE_URL = "https://13602.fullstack.clarusway.com/";
   // const getFirms = async () => {
@@ -37,7 +41,9 @@ const Firms = () => {
         Firms
       </Typography>
 
-      <Button variant="contained">New Firm</Button>
+      <Button variant="contained" onClick={}>New Firm</Button>
+
+      <FirmModal open={open} setOpen={setOpen} />
 
       {firms?.length > 0 && (
         <Grid container justifyContent="center" gap={3}>
