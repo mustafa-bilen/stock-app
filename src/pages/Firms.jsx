@@ -1,11 +1,14 @@
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button, Grid, Typography } from "@mui/material";
 import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import FirmCard from "../components/FirmCard";
 import useStockCalls from "../hooks/useStockCalls";
 // import axios from "axios";
 // import { fetchFail, fetchStart, getSuccess } from "../features/StockSlice";
 
 const Firms = () => {
-  const { getFirms, getSales } = useStockCalls();
+  const { getFirms } = useStockCalls();
+  const { firms } = useSelector((state) => state.stock);
   // const { token } = useSelector((state) => state.auth);
   // const BASE_URL = "https://13602.fullstack.clarusway.com/";
   // const getFirms = async () => {
@@ -26,7 +29,6 @@ const Firms = () => {
 
   useEffect(() => {
     getFirms();
-    getSales();
   }, []);
 
   return (
@@ -36,6 +38,16 @@ const Firms = () => {
       </Typography>
 
       <Button variant="contained">New Firm</Button>
+
+      {firms?.length > 0 && (
+        <Grid container justifyContent="center" gap={3}>
+          {firms?.map((firm) => (
+            <Grid item>
+              <FirmCard key={firm.id} firm={firm} />
+            </Grid>
+          ))}
+        </Grid>
+      )}
     </Box>
   );
 };
