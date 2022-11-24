@@ -5,7 +5,8 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+import EditIcon from "@mui/icons-material/Edit";
 export default function FirmCard({ firm }) {
   return (
     <Card sx={{ maxWidth: 345 }}>
@@ -23,9 +24,9 @@ export default function FirmCard({ firm }) {
           {firm?.address} <p>Phone: {firm?.phone}</p>
         </Typography>
       </CardContent>
-      <CardActions>
-        <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button>
+      <CardActions sx={{ display: "flex", justifyContent: "center" }}>
+        <EditIcon />
+        <DeleteOutlineIcon />
       </CardActions>
     </Card>
   );
