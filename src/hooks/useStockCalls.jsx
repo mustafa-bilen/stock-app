@@ -2,9 +2,12 @@
 import { useDispatch } from "react-redux";
 import { fetchFail, fetchStart, getSuccess } from "../features/StockSlice";
 import useAxios from "./useAxios";
+import { toastSuccessNotify, toastErrorNotify } from "../helper/ToastNotify";
 const useStockCalls = () => {
   const dispatch = useDispatch();
   const { axiosWithToken } = useAxios();
+
+  //!!--------------GETCALLS------------------
   const getStockData = async (url) => {
     dispatch(fetchStart());
     try {
@@ -19,11 +22,22 @@ const useStockCalls = () => {
 
   const getFirms = () => getStockData("firms");
   const getSales = () => getStockData("sales");
-  const getProducts = () => getStockData("products");
-  const getBrands = () => getStockData("brands");
-  const getPurchase = () => getStockData("Purchase");
 
-  return { getFirms, getSales, getProducts, getBrands, getPurchase };
+  //!!--------------GETCALLS------------------!
+
+  const deleteStockData = async (url, id) => {
+    try {
+      await axiosWithToken.delete(`stock/${url}/${id}/`);
+      toastSuccessNotify(`${url} successfuly deleted`);
+      getStockData(url);
+    } catch (error) {
+      console.log(error);
+      toastErrorNotify(`${url} can not be deleted`);
+    }
+  };
+  const deleteFirm = (id) => deleteStockData("firms", id);
+
+  return { getFirms, getSales, deleteFirm };
 };
 
 export default useStockCalls;
