@@ -1,11 +1,31 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
+
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-import { modalStyle } from "../../styles/globalStyle";
+import { flexCenter, modalStyle } from "../../styles/globalStyle";
+import { Button, TextField } from "@mui/material";
+import useStockCalls from "../../hooks/useStockCalls";
 
-export default function firmModal({ open, setOpen }) {
+export default function FirmModal({ open, setOpen, info, setInfo }) {
+  const { postFirm, putFirm } = useStockCalls();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (info.id) {
+      putFirm(info);
+    } else {
+      postFirm(info);
+    }
+    setOpen(false);
+    setInfo({});
+  };
+
+  console.log(info);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setInfo({ ...info, [name]: value });
+  };
   return (
     <div>
       <Modal
@@ -15,12 +35,48 @@ export default function firmModal({ open, setOpen }) {
         aria-describedby="modal-modal-description"
       >
         <Box sx={modalStyle}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            Text in a modal
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-          </Typography>
+          <Box component="form" onSubmit={handleSubmit} sx={flexCenter}>
+            <TextField
+              label="Firm Name*"
+              name="name"
+              id="name"
+              type="text"
+              variant="outlined"
+              value={info?.name || ""}
+              onChange={handleChange}
+            />
+            <TextField
+              label="Phone*"
+              name="phone"
+              id="phone"
+              type="tel"
+              variant="outlined"
+              value={info?.phone || ""}
+              onChange={handleChange}
+            />
+            <TextField
+              label="Address*"
+              name="address"
+              id="address"
+              type="text"
+              variant="outlined"
+              value={info?.address || ""}
+              onChange={handleChange}
+            />
+            <TextField
+              label="Image Url*"
+              name="image"
+              id="image"
+              type="url"
+              variant="outlined"
+              value={info?.image || ""}
+              onChange={handleChange}
+            />
+
+            <Button type="submit" variant="contained">
+              Submit Firm
+            </Button>
+          </Box>
         </Box>
       </Modal>
     </div>

@@ -12,6 +12,7 @@ const Firms = () => {
   const { getFirms } = useStockCalls();
   const { firms } = useSelector((state) => state.stock);
   const [open, setOpen] = useState(false);
+  const [info, setInfo] = useState({});
 
   // const { token } = useSelector((state) => state.auth);
   // const BASE_URL = "https://13602.fullstack.clarusway.com/";
@@ -41,15 +42,17 @@ const Firms = () => {
         Firms
       </Typography>
 
-      <Button variant="contained" onClick={}>New Firm</Button>
+      <Button variant="contained" onClick={() => setOpen(true)}>
+        New Firm
+      </Button>
 
-      <FirmModal open={open} setOpen={setOpen} />
+      <FirmModal open={open} setOpen={setOpen} info={info} setInfo={setInfo} />
 
       {firms?.length > 0 && (
         <Grid container justifyContent="center" gap={3}>
           {firms?.map((firm, id) => (
             <Grid item key={firm?.id}>
-              <FirmCard firm={firm} />
+              <FirmCard firm={firm} setOpen={setOpen} setInfo={setInfo} />
             </Grid>
           ))}
         </Grid>
