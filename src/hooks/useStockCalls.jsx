@@ -3,19 +3,26 @@ import { useDispatch } from "react-redux";
 import { fetchFail, fetchStart, getSuccess } from "../features/StockSlice";
 const useStockCalls = () => {
   const dispatch = useDispatch();
-  const getFirms = async () => {
-    const url = "firms";
+
+  const getStockData = async (url) => {
     dispatch(fetchStart());
     try {
-      const { data } = await axiosWithToken.get(`stock/firms/`);
-      console.log(data);
+      const { data } = await axiosWithToken.get(`stock/${url}/`);
+
       dispatch(getSuccess({ data, url }));
     } catch (error) {
       dispatch(fetchFail());
       console.log(error);
     }
   };
-  return { getFirms };
+
+  const getFirms = () => getStockData("firms");
+  const getSales = () => getStockData("sales");
+  const getProducts = () => getStockData("products");
+  const getBrands = () => getStockData("brands");
+  const getPurchase = () => getStockData("Purchase");
+
+  return { getFirms, getSales, getProducts, getBrands, getPurchase };
 };
 
 export default useStockCalls;
