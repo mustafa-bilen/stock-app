@@ -1,22 +1,21 @@
-import React from "react";
-
+import { axiosWithToken } from "../services/axiosInstance";
+import { useDispatch } from "react-redux";
+import { fetchFail, fetchStart, getSuccess } from "../features/StockSlice";
 const useStockCalls = () => {
+  const dispatch = useDispatch();
   const getFirms = async () => {
     const url = "firms";
     dispatch(fetchStart());
     try {
-      const { data } = await axios.get(`${BASE_URL}stock/firms/`, {
-        headers: { Authorization: `Token ${token}` },
-      });
-
+      const { data } = await axiosWithToken.get(`stock/firms/`);
       console.log(data);
       dispatch(getSuccess({ data, url }));
     } catch (error) {
-      dispatch(fetchFail);
+      dispatch(fetchFail());
       console.log(error);
     }
   };
-  return <div>useStockCalls</div>;
+  return { getFirms };
 };
 
 export default useStockCalls;
