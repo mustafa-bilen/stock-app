@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import FirmCard from "../components/FirmCard";
 import useStockCalls from "../hooks/useStockCalls";
 import { useState } from "react";
-import FirmModal from "../components/models/firmModal";
+import FirmModal from "../components/models/FirmModal";
 // import axios from "axios";
 // import { fetchFail, fetchStart, getSuccess } from "../features/StockSlice";
 
