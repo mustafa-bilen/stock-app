@@ -1,63 +1,50 @@
-import { Box, Button, Grid, Typography } from "@mui/material";
-import { useEffect } from "react";
+import { Typography, Box, Grid, Alert, Button } from "@mui/material";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import BrandsCard from "../components/BrandsCard";
+import BrandCard from "../components/BrandCard";
+import BrandModal from "../components/modals/BrandModal";
 import useStockCalls from "../hooks/useStockCalls";
-import { useState } from "react";
-import BrandsModal from "../components/models/BrandsModal";
-// import axios from "axios";
-// import { fetchFail, fetchStart, getSuccess } from "../features/StockSlice";
+import { flexCenter } from "../styles/globalStyle";
 
 const Brands = () => {
   const { getBrands } = useStockCalls();
-  const { brands } = useSelector((state) => state.stock);
+  const { brands, loading } = useSelector((state) => state.stock);
   const [open, setOpen] = useState(false);
   const [info, setInfo] = useState({});
 
-  // const { token } = useSelector((state) => state.auth);
-  // const BASE_URL = "https://13602.fullstack.clarusway.com/";
-  // const getFirms = async () => {
-  //   const url = "firms";
-  //   dispatch(fetchStart());
-  //   try {
-  //     const { data } = await axios.get(`${BASE_URL}stock/firms/`, {
-  //       headers: { Authorization: `Token ${token}` },
-  //     });
-
-  //     console.log(data);
-  //     dispatch(getSuccess({ data, url }));
-  //   } catch (error) {
-  //     dispatch(fetchFail);
-  //     console.log(error);
-  //   }
-  // };
-
   useEffect(() => {
     getBrands();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <Box>
-      <Typography variant="h4" color="error" mb={4}>
+      <Typography variant="h4" color="error" mb={2}>
         Brands
       </Typography>
 
-      <Button variant="contained" onClick={() => setOpen(true)}>
+      <Button
+        variant="contained"
+        onClick={() => {
+          setInfo({});
+          setOpen(true);
+        }}
+      >
         New Brand
       </Button>
 
-      <BrandsModal
-        open={open}
-        setOpen={setOpen}
-        info={info}
-        setInfo={setInfo}
-      />
+      <BrandModal open={open} setOpen={setOpen} info={info} setInfo={setInfo} />
+
+      {!loading && !brands?.length && (
+        <Alert severity="warning" sx={{ mt: 4, width: "50%" }}>
+          There is no brand to show
+        </Alert>
+      )}
 
       {brands?.length > 0 && (
-        <Grid container justifyContent="center" gap={3}>
-          {brands?.map((brand, id) => (
-            <Grid item key={brand?.id}>
-              <BrandsCard brand={brand} setOpen={setOpen} setInfo={setInfo} />
+        <Grid container sx={flexCenter} mt={4}>
+          {brands?.map((brand) => (
+            <Grid item key={brand.id}>
+              <BrandCard brand={brand} setOpen={setOpen} setInfo={setInfo} />
             </Grid>
           ))}
         </Grid>

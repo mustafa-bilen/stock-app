@@ -11,6 +11,7 @@ import StarsIcon from "@mui/icons-material/Stars";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import SupervisorAccountIcon from "@mui/icons-material/SupervisorAccount";
 import { useNavigate } from "react-router-dom";
+
 const icons = [
   {
     icon: <DashboardIcon />,
@@ -45,15 +46,17 @@ const icons = [
   {
     title: "Admin Panel",
     icon: <SupervisorAccountIcon />,
-    url: "https://13602.fullstack.clarusway.com/admin/",
+    url: "https://10001.fullstack.clarusway.com/admin",
   },
 ];
+
 const iconStyle = {
   color: "#eee",
   "& .MuiSvgIcon-root": { color: "#eee" },
   "&:hover": { color: "red" },
   "&:hover .MuiSvgIcon-root": { color: "red" },
 };
+
 const MenuListItems = () => {
   const navigate = useNavigate();
   return (
@@ -67,6 +70,7 @@ const MenuListItems = () => {
                 <ListItemText primary={item.title} />
               </ListItemButton>
             )}
+
             {!item.url.includes("http") && (
               <ListItemButton onClick={() => navigate(item.url)} sx={iconStyle}>
                 <ListItemIcon>{item.icon}</ListItemIcon>
