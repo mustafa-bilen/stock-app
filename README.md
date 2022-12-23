@@ -6,7 +6,6 @@
 
   - [The challenge](#the-challenge)
   - [Screenshot](#screenshot)
-  - [Links](#links)
   - [Built with](#built-with)
   - [Useful resources](#useful-resources)
 
@@ -23,17 +22,15 @@ Project aims to create a E comerse stock app with React.
 
 
 
+
 ## Screenshot
-<p align="center">
-<a href="https://stock-app-muharremgem.vercel.app/"><img src="stockapp.gif" alt="gif"></a>
+<p>
+<img src="https://user-images.githubusercontent.com/108340865/209301813-1794771a-8de0-49fd-97cd-129a83b49631.gif"/>
 </p>
 
 
 
-## Links
-<hr>
-<b>Check The Live Website ➡️</b> <a href="https://stock-app-us.vercel.app/">Live Website</a>
-<hr>
+
 
 ### Built with
 - I made an Stock App with React 
